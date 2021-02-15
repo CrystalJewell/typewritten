@@ -107,7 +107,7 @@ tw_redraw() {
       PROMPT="$BREAK_LINE$tw_home_relative_wd$tw_git_arrow_info$BREAK_LINE$tw_env_prompt"
       RPROMPT=""
     elif [ "$tw_layout" = "pure-ish" ]; then
-    PROMPT="$BREAK_LINE$tw_bold$tw_home_relative_wd$tw_git_arrow_info$tw_normal$BREAK_LINE$tw_env_prompt"
+    PROMPT="$BREAK_LINE$tw_bold%F{$tw_current_directory_color}%c$tw_git_arrow_info$tw_normal$BREAK_LINE$tw_env_prompt"
     RPROMPT=""
     else
       if [ "$tw_layout" = "singleline_verbose" ]; then
