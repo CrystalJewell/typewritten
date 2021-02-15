@@ -45,6 +45,8 @@ tw_current_directory_color="$tw_colors[current_directory]"
 tw_git_branch_color="$tw_colors[git_branch]"
 
 tw_arrow="%F{$tw_colors[arrow]}->"
+tw_bold=$(tput bold)
+tw_normal=$(tput sgr0)
 
 tw_get_virtual_env() {
   if [[ -z $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
@@ -104,6 +106,9 @@ tw_redraw() {
     if [ "$tw_layout" = "pure" ]; then
       PROMPT="$BREAK_LINE$tw_home_relative_wd$tw_git_arrow_info$BREAK_LINE$tw_env_prompt"
       RPROMPT=""
+    elif [ "$tw_layout" = "pure-ish" ]; then
+    PROMPT="$BREAK_LINE$tw_bold$tw_home_relative_wd$tw_git_arrow_info$tw_normal$BREAK_LINE$tw_env_prompt"
+    RPROMPT=""
     else
       if [ "$tw_layout" = "singleline_verbose" ]; then
         PROMPT="$tw_user_host $tw_env_prompt"
