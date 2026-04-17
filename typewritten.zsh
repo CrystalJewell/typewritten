@@ -47,8 +47,15 @@ if [ ! -z "$TYPEWRITTEN_ARROW_SYMBOL" ]; then
   tw_arrow_symbol="$TYPEWRITTEN_ARROW_SYMBOL"
 fi;
 tw_arrow="%F{$tw_colors[arrow]}$tw_arrow_symbol"
-tw_bold=$(tput bold)
-tw_normal=$(tput sgr0)
+local tw_bold=$(tput bold)
+local tw_normal=$(tput sgr0)
+
+tw_get_aws_profile_info() {
+  if [[ ! -z $TYPEWRITTEN_AWS_LEFT_PROMPT_FUNCTION ]]; then
+    local value=$($TYPEWRITTEN_AWS_LEFT_PROMPT_FUNCTION) 2>/dev/null
+    [[ ! -z $value ]] && echo "$value"
+  fi;
+}
 
 tw_get_virtual_env() {
   if [[ -z $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
@@ -140,6 +147,7 @@ tw_redraw() {
   local tw_displayed_wd="$(tw_get_displayed_wd)"
 
   local tw_full_prompt="$(tw_get_virtual_env)$(tw_get_left_prompt_prefix)$tw_prompt"
+  local aws_profile_info="$(tw_get_aws_profile_info)"
 
   local tw_layout="$TYPEWRITTEN_PROMPT_LAYOUT"
   local tw_git_info="$tw_prompt_data[tw_git_branch]$tw_prompt_data[tw_git_status]"
@@ -164,8 +172,10 @@ tw_redraw() {
     fi;
 
     if [ "$tw_layout" = "pure-ish" ]; then
-    PROMPT="$BREAK_LINE$tw_bold%F{$tw_current_directory_color}%c$tw_git_arrow_info$tw_normal$BREAK_LINE$tw_env_prompt"
-    RPROMPT=""
+      local tw_pureish_git=""
+      [ "$tw_git_info" != "" ] && tw_pureish_git=" %B$tw_arrow%b %F{$tw_git_branch_color}$tw_git_info"
+      PROMPT="$BREAK_LINE%B%F{$tw_current_directory_color}%c%b$tw_pureish_git$BREAK_LINE$aws_profile_info$BREAK_LINE$tw_full_prompt"
+      RPROMPT=""
     fi;
 
     if [ "$tw_layout" = "pure_verbose" ]; then
