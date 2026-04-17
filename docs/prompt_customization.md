@@ -4,13 +4,17 @@ Here lie all the options related to how or where the information is displayed on
 
 Click on an option's name to see more info.
 
-| Option                                                              | Description                                                         | Available options                                                         | Default value |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------- |
-| [TYPEWRITTEN_PROMPT_LAYOUT](#typewritten_prompt_layout)             | Defines how the prompt is displayed.                                | `singleline`, `half_pure` , `pure`, `singleline_verbose`, and `multiline` | `singleline`  |
-| [TYPEWRITTEN_SYMBOL](#typewritten_symbol)                           | Defines the prompt symbol.                                          | Any string value                                                          | `>`           |
-| [TYPEWRITTEN_RELATIVE_PATH](#typewritten_relative_path)             | Defines what the current directory display is relative to.          | `git`, `home`, `adaptive`, or `off`                                       | `git`         |
-| [TYPEWRITTEN_CURSOR](#typewritten_cursor)                           | Defines the used cursor.                                            | `underscore`, `beam`, `block`, or `terminal`                              | `underscore`  |
-| [TYPEWRITTEN_RIGHT_PROMPT_PREFIX](#typewritten_right_prompt_prefix) | Defines what is displayed just before the right part of the prompt. | Any string                                                                |               |
+| Option                                                                                                                            | Description                                                                                    | Available options                                                         | Default value |
+| --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------- |
+| [TYPEWRITTEN_PROMPT_LAYOUT](#typewritten_prompt_layout)                                                                           | Defines how the prompt is displayed.                                                           | `singleline`, `half_pure` , `pure`, `singleline_verbose`, and `multiline` | `singleline`  |
+| [TYPEWRITTEN_SYMBOL](#typewritten_symbol)                                                                                         | Defines the prompt symbol.                                                                     | Any string value                                                          | `❯`           |
+| [TYPEWRITTEN_ARROW_SYMBOL](#typewritten_arrow_symbol)                                                                             | Defines the arrow symbol.                                                                      | Any string value                                                          | `->`          |
+| [TYPEWRITTEN_RELATIVE_PATH](#typewritten_relative_path)                                                                           | Defines what the current directory display is relative to.                                     | `git`, `home`, `adaptive`, or `off`                                       | `git`         |
+| [TYPEWRITTEN_CURSOR](#typewritten_cursor)                                                                                         | Defines the used cursor.                                                                       | `underscore`, `beam`, `block`, or `terminal`                              | `underscore`  |
+| [TYPEWRITTEN_LEFT_PROMPT_PREFIX](#typewritten_left_prompt_prefix-and-typewritten_right_prompt_prefix)                             | Defines what is displayed just before the prompt symbol on the left.                           | Any string                                                                |               |
+| [TYPEWRITTEN_LEFT_PROMPT_PREFIX_FUNCTION](#typewritten_left_prompt_prefix_function-and-typewritten_right_prompt_prefix_function)  | Defines what is displayed just before the prompt symbol on the left. Takes in a function name. | Any function name                                                         |               |
+| [TYPEWRITTEN_RIGHT_PROMPT_PREFIX](#typewritten_left_prompt_prefix-and-typewritten_right_prompt_prefix)                            | Defines what is displayed just before the right part of the prompt.                            | Any string                                                                |               |
+| [TYPEWRITTEN_RIGHT_PROMPT_PREFIX_FUNCTION](#typewritten_left_prompt_prefix_function-and-typewritten_right_prompt_prefix_function) | Defines what is displayed just before the prompt symbol on the left. Takes in a function name. | Any function name                                                         |               |
 
 > All of these options are configurable through your `.zshrc` file like this:
 >
@@ -36,6 +40,12 @@ Click on an option's name to see more info.
 
 <p align="center">
   <img src="_media/layouts/pure.png" alt="pure prompt layout" />
+</p>
+
+**Pure - verbose variation (`TYPEWRITTEN_PROMPT_LAYOUT="pure_verbose"`)**
+
+<p align="center">
+  <img src="_media/layouts/pure_verbose.png" alt="pure verbose prompt layout" />
 </p>
 
 **Single line - verbose variation (`TYPEWRITTEN_PROMPT_LAYOUT="singleline_verbose"`)**
@@ -70,6 +80,22 @@ Here are some examples of customized prompt symbols.
 
 <p align="center">
   <img src="_media/symbols/arrow.png" alt="arrow symbol" />
+</p>
+
+## TYPEWRITTEN_ARROW_SYMBOL
+
+Here are some examples of customized prompt arrow symbols.
+
+**Default (`TYPEWRITTEN_ARROW_SYMBOL="->"`)**
+
+<p align="center">
+  <img src="_media/arrow_symbols/default.png" alt="default arrow symbol" />
+</p>
+
+**Glyph arrow (`TYPEWRITTEN_ARROW_SYMBOL="➜"`)**
+
+<p align="center">
+  <img src="_media/arrow_symbols/glyph_arrow.png" alt="glyph arrow symbol" />
 </p>
 
 ## TYPEWRITTEN_RELATIVE_PATH
@@ -144,10 +170,77 @@ This option being off means that at all times, the current directory display onl
 
 By using this option, typewritten stops managing cursor preference. The cursor used will be the one configured by your terminal emulator.
 
-## TYPEWRITTEN_RIGHT_PROMPT_PREFIX
+## TYPEWRITTEN_LEFT_PROMPT_PREFIX and TYPEWRITTEN_RIGHT_PROMPT_PREFIX
 
-**Bash comment prefix (`TYPEWRITTEN_RIGHT_PROMPT_PREFIX="# "`)**
+This option is stricly used as a string value. To use functions, take a look at [TYPEWRITTEN_LEFT_PROMPT_PREFIX_FUNCTION](#typewritten_left_prompt_prefix_function-and-typewritten_right_prompt_prefix_function).
+
+**Display a string value**
+
+```sh
+export TYPEWRITTEN_RIGHT_PROMPT_PREFIX="# "
+```
 
 <p align="center">
   <img src="_media/right_prompt_prefix.png" alt="bash comment prefix" />
 </p>
+
+## TYPEWRITTEN_LEFT_PROMPT_PREFIX_FUNCTION and TYPEWRITTEN_RIGHT_PROMPT_PREFIX_FUNCTION
+
+This variable should be assigned to a function name, and will be evaluated whenever the prompt is rendered.
+
+### Display the `date`
+
+Since `date` is a function name, it will execute and the output will be displayed as the prefix:
+
+```sh
+export TYPEWRITTEN_LEFT_PROMPT_PREFIX_FUNCTION=date
+```
+
+<p align="center">
+  <img src="_media/left_prompt_prefix/date.png" alt="bash prompt date prefix" width="750" />
+</p>
+
+### Display `date` with options
+
+To customize what the timestamp will look like, you can use options:
+
+```sh
+export TYPEWRITTEN_LEFT_PROMPT_PREFIX_FUNCTION=(date +%H:%M:%S)
+```
+
+<p align="center">
+  <img src="_media/left_prompt_prefix/date_with_options.png" alt="bash prompt date prefix" width="750" />
+</p>
+
+### Use a custom function
+
+You can create your own function to display more complex values:
+
+```sh
+complex_time() {
+  local time=$(date +%H:%M:%S)
+  echo "time: $time"
+}
+
+export TYPEWRITTEN_LEFT_PROMPT_PREFIX_FUNCTION=complex_time
+```
+
+<p align="center">
+  <img src="_media/left_prompt_prefix/custom_command.png" alt="bash prompt date prefix" width="750" />
+</p>
+
+**Bonus example**
+
+Display kube_context:
+
+```sh
+display_kube_context() {
+  tw_kube_context="$(kubectl config current-context 2> /dev/null)"
+
+  if [[ $tw_kube_context != "" ]]; then
+    echo "($(basename $tw_kube_context))"
+  fi
+}
+
+export TYPEWRITTEN_LEFT_PROMPT_PREFIX_FUNCTION=display_kube_context
+```

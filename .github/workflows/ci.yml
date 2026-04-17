@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - "**"
+  pull_request:
+
+jobs:
+  syntax-and-smoke:
+    name: Smoke tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install zsh on Ubuntu
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y zsh
+
+      - name: Run smoke tests
+        shell: bash
+        run: zsh tests/smoke.zsh
+
+  syntax:
+    name: Zsh syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install zsh
+        run: sudo apt-get update && sudo apt-get install -y zsh
+
+      - name: Check zsh syntax
+        run: zsh -n typewritten.zsh typewritten.plugin.zsh typewritten.zsh-theme prompt_typewritten_setup async async.zsh lib/colors.zsh lib/git.zsh scripts/install.sh scripts/uninstall.sh tests/smoke.zsh

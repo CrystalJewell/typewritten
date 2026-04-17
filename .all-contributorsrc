@@ -233,6 +233,102 @@
         "ideas",
         "test"
       ]
+    },
+    {
+      "login": "CrystalJewell",
+      "name": "Crystal Adkins",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21298255?v=4",
+      "profile": "https://github.com/CrystalJewell",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "juanCortelezzi",
+      "name": "J.B.C",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57237705?v=4",
+      "profile": "https://github.com/juanCortelezzi",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    },
+    {
+      "login": "jeevatattva",
+      "name": "Jeeva K",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26855245?v=4",
+      "profile": "https://github.com/jeevatattva",
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
+    },
+    {
+      "login": "subhajit-halder",
+      "name": "awakened",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54535412?v=4",
+      "profile": "https://github.com/subhajit-halder",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "spamwax",
+      "name": "spamwax",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1251233?v=4",
+      "profile": "https://github.com/spamwax",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "Austin-Ray",
+      "name": "Austin Ray",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1640737?v=4",
+      "profile": "https://austinray.io",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "Pound-Hash",
+      "name": "Alan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/51193876?v=4",
+      "profile": "https://github.com/Pound-Hash",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "vedantnn71",
+      "name": "Vedant Nandwana",
+      "avatar_url": "https://avatars.githubusercontent.com/u/70624701?v=4",
+      "profile": "http://vedantnandwana.me",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "KEDLogic",
+      "name": "Kyle Dozier",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9738036?v=4",
+      "profile": "https://github.com/KEDLogic",
+      "contributions": [
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "danielbayley",
+      "name": "Daniel Bayley",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7797479?v=4",
+      "profile": "http://vimeo.com/danielbayley",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -240,5 +336,6 @@
   "projectOwner": "reobin",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }

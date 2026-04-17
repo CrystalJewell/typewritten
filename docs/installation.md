@@ -8,6 +8,19 @@ npm install -g typewritten
 
 That's it. The script will make the necessary symlinks to `fpath` and set the prompt in your `.zshrc`.
 
+### [Homebrew](https://brew.sh)
+
+```shell
+brew install typewritten
+```
+
+Then load typewritten in your `.zshrc` by using zsh prompinit:
+
+```shell
+autoload -U promptinit; promptinit
+prompt typewritten
+```
+
 ## Manual
 
 Clone the typewritten repository somewhere you can easily link. I recommend creating a `.zsh` directory at root.
@@ -50,6 +63,10 @@ Note: If creating the symlinks is a problem, you can skip the step and set `ZSH_
 
 Add `antibody bundle reobin/typewritten` to your `.zshrc`.
 
+## antigen
+
+Add `antigen bundle reobin/typewritten@main` to your `.zshrc`.
+
 ## zgen
 
 Add `zgen load reobin/typewritten typewritten` to your `.zshrc`.
@@ -61,3 +78,12 @@ Add `zmodule reobin/typewritten --name typewritten` to your `.zimrc` and run `zi
 ## zplug
 
 Add `zplug reobin/typewritten, as:theme` to your `.zshrc`.
+
+## zinit
+
+Add the following config to your `.zshrc`:
+
+```sh
+zinit ice compile'(typewritten|async).zsh' pick'async.zsh' src'typewritten.zsh'
+zinit light reobin/typewritten
+```

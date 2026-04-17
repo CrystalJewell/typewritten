@@ -1,6 +1,6 @@
 {
   "name": "typewritten",
-  "version": "1.4.0",
+  "version": "1.5.2",
   "description": "A minimal, lightweight, informative zsh prompt theme",
   "files": [
     "typewritten.zsh",
@@ -9,6 +9,8 @@
     "scripts"
   ],
   "scripts": {
+    "test": "zsh tests/smoke.zsh",
+    "lint:shell": "zsh -n scripts/install.sh scripts/uninstall.sh",
     "postinstall": "./scripts/install.sh",
     "postuninstall": "./scripts/uninstall.sh"
   },
