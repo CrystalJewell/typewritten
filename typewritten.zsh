@@ -174,7 +174,9 @@ tw_redraw() {
     if [ "$tw_layout" = "pure-ish" ]; then
       local tw_pureish_git=""
       [ "$tw_git_info" != "" ] && tw_pureish_git=" %B$tw_arrow%b %F{$tw_git_branch_color}$tw_git_info"
-      PROMPT="$BREAK_LINE%B%F{$tw_current_directory_color}%c%b$tw_pureish_git$BREAK_LINE$aws_profile_info$BREAK_LINE$tw_full_prompt"
+      local tw_aws_section=""
+      [ "$aws_profile_info" != "" ] && tw_aws_section="$aws_profile_info$BREAK_LINE"
+      PROMPT="$BREAK_LINE%B%F{$tw_current_directory_color}%c%b$tw_pureish_git$BREAK_LINE${tw_aws_section}$tw_full_prompt"
       RPROMPT=""
     fi;
 
